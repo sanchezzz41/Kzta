@@ -1,0 +1,64 @@
+﻿<Window x:Class="Kzta.Views.DetailView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kzta.Views"
+        mc:Ignorable="d"
+        Title="DetailViewModel" Height="512.617" Width="814.256"
+        DataContext="{StaticResource DetailViewModel}" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="126*"/>
+            <ColumnDefinition Width="376*"/>
+            <ColumnDefinition Width="305*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56*"/>
+            <RowDefinition Height="276*"/>
+            <RowDefinition Height="139*"/>
+        </Grid.RowDefinitions>
+        <Button Command="{Binding OkayCommand}">CreateSomeWhere</Button>
+        <ComboBox Grid.Column="0" Margin="5,0" VerticalAlignment="Top" Grid.Row="1" ItemsSource="{Binding PropertyTypes}" 
+                  SelectedItem="{Binding SelectedPropertyType}"  DisplayMemberPath="Name" Height="22">
+        </ComboBox>
+        <Grid Grid.Row="1" Grid.Column="1" Margin="10" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="86*"/>
+                <ColumnDefinition Width="279*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock FontSize="16" TextAlignment="Center" Margin="0,20,0,0" Grid.Row="0">Название</TextBlock>
+            <TextBox  Grid.Row="0" Grid.Column="1" Margin="0,10,0,10" Text="{Binding DetailInfo.Name}"/>
+            <TextBlock FontSize="16" TextAlignment="Center" Margin="0,20,0,0" Grid.Row="1">Описание</TextBlock>
+            <TextBox Text="{Binding DetailInfo.Description}" Grid.Row="1" Grid.Column="1" Name="DetailDescription"  Margin="0,10,0,10"></TextBox>
+            <TextBlock FontSize="16" TextAlignment="Center" Margin="0,20,0,0" Grid.Row="2">S/N</TextBlock>
+            <TextBox Text="{Binding DetailInfo.InventoryNumber}" Grid.Row="2" Grid.Column="1" Name="DetailSn" Margin="0,10,0,10"></TextBox>
+            <TextBlock FontSize="16" TextAlignment="Center" Margin="0,20,0,0" Grid.Row="3">Размер</TextBlock>
+            <TextBox Text="{Binding DetailInfo.Size}" Grid.Row="3" Grid.Column="1"  Margin="0,10,0,10"></TextBox>
+            <TextBlock FontSize="16" TextAlignment="Center" Margin="0,20,0,0" Grid.Row="4">Материал</TextBlock>
+            <TextBox Text="{Binding DetailInfo.Material}" Grid.Row="4" Grid.Column="1" Name="DetailIn" Margin="0,10,0,10"></TextBox>
+            <Button Grid.Row="5" Margin="5" Command="{Binding OkayCommand}" >
+                <TextBlock TextAlignment="Center" FontSize="16">
+                    Добавить
+                </TextBlock>
+            </Button>
+            <Button Grid.Row="5" Grid.Column="1" Margin="5" Command="{Binding UploadFile}" >
+                <TextBlock TextAlignment="Center" FontSize="16">
+                    Файл загрузить
+                </TextBlock>
+            </Button>
+        </Grid>
+        <DataGrid Grid.Row="2" Grid.Column="1" AutoGenerateColumns="True" ItemsSource="{Binding Details}"
+                  SelectedItem="{Binding SelectedDetail}" Grid.ColumnSpan="2"></DataGrid>
+        <Image Name="Image" Grid.Column="2" Grid.Row="1"
+ Source="{Binding DisplayedImagePath, NotifyOnSourceUpdated=True}" Grid.ColumnSpan="2"/>
+    </Grid>
+</Window>

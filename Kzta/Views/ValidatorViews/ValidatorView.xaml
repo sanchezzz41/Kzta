@@ -1,0 +1,24 @@
+﻿<Window x:Class="Kzta.Views.ValidatorViews.ValidatorView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kzta.Views.ValidatorViews"
+        mc:Ignorable="d"
+        Title="Ошиби" Height="330.319" Width="273.405" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="231*"/>
+            <RowDefinition Height="37*"/>
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="20" TextAlignment="Center" FontWeight="Bold">
+            Описание ошибки
+        </TextBlock>
+        <TextBlock Name="ErrorMessage" Grid.Row="1" TextAlignment="Left" 
+                  Margin="10,5,10,0" FontSize="15" TextWrapping="Wrap"/>
+        <Button Grid.Row="2" Margin="90,5" Click="ButtonBase_OnClick">
+            <TextBlock FontSize="19">Закрыть</TextBlock>
+        </Button>
+    </Grid>
+</Window>
