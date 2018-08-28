@@ -19,10 +19,5 @@ namespace Kzta
             InitializeComponent();
         }
 
-        private void UIElement_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            var textBox = sender as TextBox;
-            e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
-        }
     }
 }

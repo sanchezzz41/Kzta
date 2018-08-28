@@ -1,0 +1,114 @@
+﻿<Window x:Class="Kzta.Views.ProductView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kzta.Views"
+        mc:Ignorable="d"
+        Title="ProductView" Height="478" Width="624" MinHeight="478" MinWidth="624">
+    <Grid Margin="5,10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="81*"/>
+            <ColumnDefinition Width="121*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="29*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical">
+            <Grid >
+                <TextBox x:Name="Name" Text="{Binding ProductInfo.Name}" Margin="0,5" FontSize="14"/>
+                <TextBlock IsHitTestVisible="False" Text="Название" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Foreground="Black" Opacity="0.8">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=Name}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+            <Grid >
+                <TextBox x:Name="Description" TextWrapping="Wrap" Height="100" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" 
+                         Text="{Binding ProductInfo.Description}" Margin="0,5" FontSize="14"/>
+                <TextBlock IsHitTestVisible="False" Text="Описание" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,5,0,0" Foreground="Black" Opacity="0.8">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=Description}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+            <Grid >
+                <TextBox x:Name="SerialNumber" Text="{Binding ProductInfo.SerialNumber}" Margin="0,5" FontSize="14"/>
+                <TextBlock IsHitTestVisible="False" Text="Серийный номер" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Foreground="Black" Opacity="0.8">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=SerialNumber}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+            <StackPanel Orientation="Horizontal">
+                <Button MinHeight="20" MinWidth="100"  Command="{Binding SaveDataCommand}">
+                    <TextBlock>Сохранить</TextBlock>
+                </Button>
+                <Button MinHeight="20" MinWidth="100" Margin="40,0,50,0" Command="{Binding UploadImageCommand}">
+                    <TextBlock>Добавить фото</TextBlock>
+                </Button>
+            </StackPanel>
+            <Button Margin="70,5" Height="20" Command="{Binding AddDetailToProductCommand}">
+                <TextBlock VerticalAlignment="Center">Добавить деталь</TextBlock>
+            </Button>
+        </StackPanel>
+        <Image Name="Image" Grid.Column="1" Margin="5,7"
+               Source="{Binding DisplayedImagePath, NotifyOnSourceUpdated=True}"/>
+        <DataGrid Margin="0,5,0,10" ItemsSource="{Binding Details}" 
+                              Grid.Row="1" Grid.ColumnSpan="2"
+                              CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False"
+                              SelectedItem="{Binding SelectedDetail}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Деталь" Width="0.1*" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Описание" Width="0.2*" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="S/n" Width="0.1*" Binding="{Binding InventoryNumber}"/>
+                <DataGridTextColumn Header="Материал" Width="0.1*" Binding="{Binding Material}"/>
+                <DataGridTextColumn Header="Размеры" Width="0.1*" Binding="{Binding Size}"/>
+                <DataGridTextColumn Header="Кол-во" Width="0.1*" Binding="{Binding Count}"/>
+                <DataGridTemplateColumn Header="Подробнее" Width="0.12*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button FontSize="14" 
+                                                Command="{Binding DataContext.ViewDetailCommand,       
+                                                 RelativeSource= {RelativeSource FindAncestor,
+                                                  AncestorType={x:Type DataGrid}}}"
+                                                >Подробнее</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Удалить" Width="0.085*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button FontSize="14"
+                                                Command="{Binding DataContext.DeleteProductCommand,       
+                                                 RelativeSource= {RelativeSource FindAncestor,
+                                                  AncestorType={x:Type DataGrid}}}">X</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

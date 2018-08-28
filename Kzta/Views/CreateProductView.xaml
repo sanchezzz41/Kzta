@@ -1,27 +1,21 @@
-﻿<Window x:Class="Kzta.Views.DetailView"
+﻿<Window x:Class="Kzta.Views.CreateProductView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kzta.Views"
         mc:Ignorable="d"
-        Title="Деталь" Height="355.617" Width="647" MinHeight="356" MinWidth="645"
-        >
+        Title="Создание изделия" Height="250.5" Width="569" MinHeight="250.5"  MinWidth="624">
     <Grid>
         <Grid Margin="5,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="81*"/>
                 <ColumnDefinition Width="121*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Vertical" Margin="5">
+            <StackPanel Orientation="Vertical">
                 <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="120*"/>
-                        <ColumnDefinition Width="31*"/>
-                        <ColumnDefinition Width="102*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="Name" Text="{Binding Detail.Name}" Margin="0,5" FontSize="14" Grid.ColumnSpan="3"/>
-                    <TextBlock IsHitTestVisible="False" Text="Название" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,8,0,7" Foreground="Black" Opacity="0.8">
+                    <TextBox x:Name="Name" Text="{Binding ProductInfo.Name}" Margin="0,5" FontSize="14"/>
+                    <TextBlock IsHitTestVisible="False" Text="Название" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Foreground="Black" Opacity="0.8">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="Visibility" Value="Collapsed"/>
@@ -36,7 +30,7 @@
                 </Grid>
                 <Grid >
                     <TextBox x:Name="Description" TextWrapping="Wrap" Height="100" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" 
-                         Text="{Binding Detail.Description}" Margin="0,5" FontSize="14"/>
+                         Text="{Binding ProductInfo.Description}" Margin="0,5" FontSize="14"/>
                     <TextBlock IsHitTestVisible="False" Text="Описание" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,5,0,0" Foreground="Black" Opacity="0.8">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}">
@@ -51,7 +45,7 @@
                     </TextBlock>
                 </Grid>
                 <Grid >
-                    <TextBox x:Name="SerialNumber" Text="{Binding Detail.InventoryNumber}" Margin="0,5" FontSize="14"/>
+                    <TextBox x:Name="SerialNumber" Text="{Binding ProductInfo.SerialNumber}" Margin="0,5" FontSize="14"/>
                     <TextBlock IsHitTestVisible="False" Text="Серийный номер" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Foreground="Black" Opacity="0.8">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}">
@@ -65,52 +59,16 @@
                         </TextBlock.Style>
                     </TextBlock>
                 </Grid>
-                <Grid >
-                    <TextBox x:Name="Material" Text="{Binding Detail.Material}" Margin="0,5" FontSize="14"/>
-                    <TextBlock IsHitTestVisible="False" Text="Материал" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Foreground="Black" Opacity="0.8">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Text, ElementName=Material}" Value="">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                </Grid>
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition Width="6*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="Size" Text="{Binding Detail.Size}" Margin="0,5" FontSize="14" Grid.ColumnSpan="2"/>
-                    <TextBlock IsHitTestVisible="False" Text="Размер" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,8,0,7" Foreground="Black" Opacity="0.8">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Text, ElementName=Size}" Value="">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                </Grid>
-                <ComboBox  VerticalAlignment="Center" Grid.Row="0" ItemsSource="{Binding PropertyTypes}" 
-                          SelectedItem="{Binding SelectedPropertyType}"  DisplayMemberPath="Name" Height="22"/>
-                <StackPanel Orientation="Horizontal" Margin="0,5">
+                <StackPanel Orientation="Horizontal">
                     <Button MinHeight="20" MinWidth="100"  Command="{Binding SaveDataCommand}">
                         <TextBlock>Сохранить</TextBlock>
                     </Button>
-                    <Button MinHeight="20" MinWidth="100" Margin="39,0,50,0" Command="{Binding UploadImageCommand}">
+                    <Button MinHeight="20" MinWidth="100" Margin="40,0,50,0" Command="{Binding UploadImageCommand}">
                         <TextBlock>Добавить фото</TextBlock>
                     </Button>
                 </StackPanel>
             </StackPanel>
-            <Image Name="Image" Grid.Column="1" Margin="5"
+            <Image Name="Image" Grid.Column="1" Margin="5,7"
                Source="{Binding DisplayedImagePath, NotifyOnSourceUpdated=True}"/>
         </Grid>
     </Grid>

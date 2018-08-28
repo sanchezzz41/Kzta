@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201808270855243_AddFiles.Designer.cs">
       <DependentUpon>201808270855243_AddFiles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808280717164_AddSnToProduct.cs" />
+    <Compile Include="Migrations\201808280717164_AddSnToProduct.Designer.cs">
+      <DependentUpon>201808280717164_AddSnToProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Detail.cs" />
     <Compile Include="Models\DetailInProduct.cs" />
@@ -93,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808270855243_AddFiles.resx">
       <DependentUpon>201808270855243_AddFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808280717164_AddSnToProduct.resx">
+      <DependentUpon>201808280717164_AddSnToProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

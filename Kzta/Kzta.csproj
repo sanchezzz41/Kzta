@@ -96,12 +96,27 @@
     <Compile Include="Extensions\Validator.cs" />
     <Compile Include="Extensions\ValidatorExtensions.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="ViewModels\DetailViewModel.cs" />
+    <Compile Include="ViewModels\Details\DetailViewModel.cs" />
+    <Compile Include="ViewModels\Products\DetailToProductViewModel.cs" />
+    <Compile Include="ViewModels\Products\ProductViewModel.cs" />
+    <Compile Include="ViewModels\PropertyTypes\PropertyTypeViewModel.cs" />
+    <Compile Include="Views\CreateProductView.xaml.cs">
+      <DependentUpon>CreateProductView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetailToProductView.xaml.cs">
+      <DependentUpon>DetailToProductView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DetailView.xaml.cs">
       <DependentUpon>DetailView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProductView.xaml.cs">
+      <DependentUpon>ProductView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PropertyTypeView.xaml.cs">
       <DependentUpon>PropertyTypeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ValidatorViews\SaveResultView.xaml.cs">
+      <DependentUpon>SaveResultView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ValidatorViews\ValidatorView.xaml.cs">
       <DependentUpon>ValidatorView.xaml</DependentUpon>
@@ -121,11 +136,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\CreateProductView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DetailToProductView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ProductView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PropertyTypeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ValidatorViews\SaveResultView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

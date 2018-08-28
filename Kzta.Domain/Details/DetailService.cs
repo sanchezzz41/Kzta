@@ -21,11 +21,12 @@ namespace Kzta.Domain.Details
         /// <inheritdoc />
         public async Task<Guid> Create(DetailInfo model)
         {
-            var propertyType = Mapper.Map<Detail>(model);
-            _context.Details.Add(propertyType);
+            var detail = Mapper.Map<Detail>(model);
+            detail.DetailtGuid = Guid.NewGuid();
+            _context.Details.Add(detail);
             await _context.SaveChangesAsync();
 
-            return propertyType.DetailtGuid;
+            return detail.DetailtGuid;
         }
 
         /// <inheritdoc />
@@ -55,6 +56,23 @@ namespace Kzta.Domain.Details
         public IQueryable<Detail> Get()
         {
             return _context.Details.AsNoTracking().OrderBy(x => x.Name);
+        }
+
+
+        /// <summary>
+        /// Устанавливает картинку
+        /// </summary>
+        /// <param name="detailGuid"></param>
+        /// <param name="imageGuid"></param>
+        /// <returns></returns>
+        public async Task SetImage(Guid detailGuid, Guid imageGuid)
+        {
+            var detail = await _context.Details.SingleOrDefaultAsync(x => x.DetailtGuid == detailGuid);
+            var image = await _context.Files.SingleOrDefaultAsync(x => x.FileGuid == imageGuid);
+            if (detail == null || image == null)
+                return;
+            detail.ImageGuid = image.FileGuid;
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Detail> GetSingle(Guid detailGuid)

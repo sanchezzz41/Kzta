@@ -5,8 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kzta.VIews"
         mc:Ignorable="d"
-        Title="PropertyTypeView" Height="450" Width="800">
+        Title="Тип детали" Height="215.598" Width="251.376" ResizeMode="NoResize">
     <Grid>
-        
+        <StackPanel Orientation="Vertical" Margin="5">
+            <Grid >
+                <TextBox x:Name="Name" Text="{Binding PropertyTypeInfo.Name}" Margin="0,5" FontSize="16"/>
+                <TextBlock IsHitTestVisible="False" FontSize="16" Text="Название" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Foreground="Black" Opacity="0.8">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=Name}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+            <Grid >
+                <TextBox x:Name="Description" TextWrapping="Wrap" Height="100" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" 
+                         Text="{Binding PropertyTypeInfo.Description}" Margin="0,5" FontSize="16"/>
+                <TextBlock IsHitTestVisible="False" FontSize="16" Text="Описание" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,5,0,0" Foreground="Black" Opacity="0.8">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=Description}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+            <Grid >
+            </Grid>
+            <Button MinHeight="20" MinWidth="100" HorizontalAlignment="Center"  Command="{Binding CreateCommand}">
+                <TextBlock>Сохранить</TextBlock>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>

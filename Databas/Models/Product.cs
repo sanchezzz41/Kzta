@@ -37,6 +37,12 @@ namespace Databas.Models
         public string Description { get; set; }
 
         /// <summary>
+        /// S/N
+        /// </summary>
+        [MaxLength(1000)]
+        public string SerialNumber { get; set; }
+
+        /// <summary>
         /// Картинка(да да, сори за название)
         /// </summary>
         public virtual File File { get; set; }

@@ -3,6 +3,7 @@ using Databas;
 using Kzta.Domain.PropertyTypes;
 using Kzta.Extensions;
 using Kzta.ViewModels;
+using Kzta.ViewModels.Details;
 using Unity;
 
 namespace Kzta
@@ -19,9 +20,7 @@ namespace Kzta
             InitializeDb(container);
 
             var mainModel = container.Resolve<MainViewModel>();
-            var detailModel = container.Resolve<DetailViewModel>();
             Resources.Add("MainViewModel", mainModel);
-            Resources.Add("DetailViewModel", detailModel);
 
             MainWindow mainWindow = container.Resolve<MainWindow>();
             mainWindow.Show();
